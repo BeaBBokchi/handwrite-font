@@ -1,0 +1,98 @@
+.container {
+  height: 100vh;
+  background: linear-gradient(55deg, #80d4ff 0%, #e9f 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 128px;
+  gap: 128px;
+}
+
+.link {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 14px 28px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.title {
+  font-family: 'Nanum Myeongjo';
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: -2px;
+  color: rgb(255, 255, 255);
+}
+
+.desc {
+  text-align: center;
+  p {
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -1px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.imgDiv {
+  height: 214px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20rem;
+  span {
+    font-weight: 700;
+  }
+  p {
+    font-family: 'Nanum Myeongjo';
+    font-size: 14px;
+    color: rgb(136, 136, 136);
+    margin: 4px;
+  }
+  &>div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 48px;
+  }
+  &>div>div {
+    text-align: center;
+  }
+  svg {
+    font-size: 24px;
+  }
+}
+
+.div1 {
+  svg {
+    color: rgb(0, 204, 255);
+  }
+}
+.div2 {
+  svg {
+    color: rgb(0, 153, 255);
+  }
+}
+.div3 {
+  svg {
+    color: rgb(85, 85, 255);
+  }
+}
+.div4 {
+  svg {
+    color: rgb(85, 85, 255);
+  }
+}
+.div5 {
+  svg {
+    color: rgb(136, 68, 255);
+  }
+}

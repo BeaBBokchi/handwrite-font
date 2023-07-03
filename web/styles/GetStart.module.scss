@@ -1,0 +1,68 @@
+@import "styles/variables.module";
+
+.container {
+    height: 100vh;
+    background: $bg-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+}
+
+.head {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 36px;
+    color: rgb(255, 255, 255);
+}
+
+.block {
+    width: 800px;
+    height: 300px;
+    background-color: white;
+    border-radius: 16px;
+    margin: 36px 0;
+    display: flex;
+    outline: 1px solid rgba(255, 255, 255, 0.804);
+    transition: all ease-in-out 0.1s;
+    user-select: none;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.blockHead {
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 60px;
+    .title {
+        font-size: 36px;
+        font-weight: 800;
+    }
+    .desc {
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'Nanum Gothic', sans-serif;
+    }
+    div {
+        font-family: 'Poor Story', cursive;
+        height: 50%;
+        width: 100%;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+}
+.blockHead_color1 {
+    background-color: $bg-blue--4;
+}
+.blockHead_color2 {
+    background-color: $bg-blue--2;
+}

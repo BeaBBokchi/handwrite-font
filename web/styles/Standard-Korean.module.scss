@@ -1,0 +1,163 @@
+@import "styles/variables.module";
+
+.container {
+  height: 100vh;
+  background: $bg-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.block {
+  background-color: rgb(242, 242, 242);
+  width: 60%;
+  height: 70%;
+  border-radius: 24px;
+  color: black;
+}
+
+.pageDiv {
+  height: 100%;
+  width: 100%;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .pageHeader {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 48px;
+    // font-weight: 600;
+    margin-bottom: 48px;
+  }
+  .pageDesc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 24px;
+    span {
+      margin-bottom: 12px;
+      font-family: 'Poor Story', cursive;
+    }
+    .pageDescDiv {
+      display: flex;
+    }
+  }
+}
+.page1DescDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 24px;
+  span {
+    margin-bottom: 12px;
+    font-family: 'Poor Story', cursive;
+  }
+  .pageDescDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20rem;
+      height: 20rem;
+      text-align: center;
+      border: 2px solid $bg-blue;
+      border-style: dashed;
+      border-radius: 15%;
+      margin-bottom: 2rem;
+      font-size: 124px;
+      color: $bg-blue--2;
+    }
+  }
+}
+.page2DescDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-size: 24px;
+  span {
+    margin-bottom: 12px;
+    font-family: 'Poor Story', cursive;
+  }
+  .pageDescDiv {
+    display: flex;
+  }
+}
+
+
+.download {
+  background-color: $bg-blue--1;
+  color: white;
+  font-size: 24px;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+
+.dropzoneDiv {
+}
+
+.progressDiv {
+  width: 50%;
+  height: 90px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.progressDiv_element {
+  width: 20%;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: $bg-white;
+  transition: all ease-in-out 0.1s;
+}
+.progressDiv_element_active {
+  font-size: 30px;
+  font-weight: 600;
+  color: $bg-blue--2;
+}
+.dot {
+  font-size: 18px;
+  color: $bg-blue--4;
+  opacity: 0.7;
+}
+
+.pageBtn {
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  width: 500px;
+  height: 48px;
+  font-size: 24px;
+  margin-top: 16px;
+  transition: all ease-in-out 0.1s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.pageBtn_prev {
+  background: $bg-white;
+  color: $bg-blue--2;
+  margin-right: 24px;
+}
+.pageBtn_next {
+  background: $bg-blue--2;
+  color: $bg-white;
+  margin-left: 24px;
+}
+.pageBtn_op0 {
+  opacity: 0;
+  &:hover,
+  &:focus {
+    transform: scale(1);
+  }
+}
+

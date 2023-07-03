@@ -1,0 +1,37 @@
+@import "styles/variables.module";
+
+.container {
+    background-color: $bg-white;
+    color: black;
+    position: relative;
+    overflow: hidden;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    svg {
+        color: $bg-blue;
+        font-size: 24px;
+    }
+}
+
+.title {
+    a {
+        font-family: 'Do Hyeon';
+        font-weight: 600;
+        font-size: 26px;
+        letter-spacing: 5px;
+    }
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    a {
+        font-weight: 500;
+        color: rgb(153, 153, 153);
+    }
+
+}

@@ -1,0 +1,105 @@
+@import "styles/variables.module";
+
+.container {
+  height: 100vh;
+  background-color: $bg-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 128px;
+  gap: 128px;
+}
+
+.link {
+  background-color: rgba(255, 255, 255, 0.306);
+  padding: 10px 22px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-family: 'Do Hyeon';
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.449);
+  }
+}
+
+.title {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: -2px;
+  color: rgb(255, 255, 255);
+}
+
+.desc {
+  text-align: center;
+  p {
+    font-family: 'Hi Melody';
+    font-size: 28px;
+    letter-spacing: -1px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.imgDiv {
+  height: 214px;
+  width: 100%;
+  background-color: $bg-white;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20rem;
+  span {
+    font-weight: 700;
+  }
+  p {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 14px;
+    color: rgb(136, 136, 136);
+    margin: 4px;
+  }
+  &>div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 48px;
+  }
+  &>div>div {
+    text-align: center;
+  }
+  svg {
+    font-size: 24px;
+  }
+}
+
+.div1 {
+  svg {
+    color: $bg-blue--1;
+  }
+}
+.div2 {
+  svg {
+    color: $bg-blue--1;
+  }
+}
+.div3 {
+  svg {
+    color: $bg-blue--1;
+  }
+}
+.div4 {
+  svg {
+    color: $bg-blue--1;
+  }
+}
+.div5 {
+  svg {
+    color: $bg-blue--1;
+  }
+}
