@@ -4,6 +4,7 @@ import FilePreview from "components/FilePreview";
 import styles from "styles/DropZone.module.scss";
 
 const DropZone = ({ data, dispatch }) => {
+    const [fileSelected, setFileSelected] = useState(false);
     // onDragEnter sets inDropZone to true
     const handleDragEnter = (e) => {
         e.preventDefault();
@@ -50,6 +51,7 @@ const DropZone = ({ data, dispatch }) => {
             // reset inDropZone to false
             dispatch({ type: "SET_IN_DROP_ZONE", inDropZone: false });
         }
+        setFileSelected(true);
     };
 
     // handle file selection via input element
@@ -68,6 +70,7 @@ const DropZone = ({ data, dispatch }) => {
             // dispatch action to add selected file or files to fileList
             dispatch({ type: "ADD_FILE_TO_LIST", files });
         }
+        setFileSelected(true);
     };
 
     // to handle file uploads
@@ -97,34 +100,41 @@ const DropZone = ({ data, dispatch }) => {
 
     return (
         <>
-            <div
-                className={styles.dropzone}
-                onDragEnter={(e) => handleDragEnter(e)}
-                onDragOver={(e) => handleDragOver(e)}
-                onDragLeave={(e) => handleDragLeave(e)}
-                onDrop={(e) => handleDrop(e)}
-            >
-                <Image src="/upload.svg" alt="upload" height={50} width={50} />
+            {!fileSelected && (
+                <div
+                    className={styles.dropzone}
+                    onDragEnter={(e) => handleDragEnter(e)}
+                    onDragOver={(e) => handleDragOver(e)}
+                    onDragLeave={(e) => handleDragLeave(e)}
+                    onDrop={(e) => handleDrop(e)}
+                >
+                    <Image
+                        src="/upload.svg"
+                        alt="upload"
+                        height={50}
+                        width={50}
+                    />
 
-                <input
-                    id="fileSelect"
-                    type="file"
-                    className={styles.files}
-                    onChange={(e) => handleFileSelect(e)}
-                    accept="image/*, .pdf"
-                />
-                <label htmlFor="fileSelect">파일 업로드</label>
+                    <input
+                        id="fileSelect"
+                        type="file"
+                        className={styles.files}
+                        onChange={(e) => handleFileSelect(e)}
+                        accept="image/*, .pdf"
+                    />
+                    <label htmlFor="fileSelect">파일 업로드</label>
 
-                <h3 className={styles.uploadMessage}>
-                    버튼을 눌러 선택하거나, 이 곳에 드래그 하여 작성이 완료된
-                    템플릿을 업로드 해주세요.
-                </h3>
-            </div>
+                    <h3 className={styles.uploadMessage}>
+                        버튼을 눌러 선택하거나, 이 곳에 드래그 하여 작성이
+                        완료된 템플릿을 업로드 해주세요.
+                    </h3>
+                </div>
+            )}
 
             {/* Pass the selectect or dropped files as props */}
-            {/* <FilePreview fileData={data} />
+            {fileSelected && <FilePreview fileData={data} />}
 
-            {data.fileList.length > 0 && (
+            {/* {data.fileList.length > 0 && (
                 <button className={styles.uploadBtn} onClick={uploadFiles}>
                     Upload
                 </button>

@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 
 import ReactCrop from "react-image-crop";
 import FilePreview from "components/FilePreview";
+import Tail from "components/Tail";
 
 const StandardKorean = () => {
     const router = useRouter();
@@ -106,19 +107,26 @@ const StandardKorean = () => {
                             <span className={styles.pageHeader}>
                                 템플릿 작성
                             </span>
-                            <div className={styles.pageDesc}>
-                                <span>
-                                    아래 템플릿을 다운로드하여 손글씨를
-                                    작성해주세요.
-                                </span>
+                            <div className={styles.page2DescDiv}>
+                                <img src="/template/손글씨작성템플릿.jpg" />
+
+                                <div className={styles.templateDiv}>
+                                    <a
+                                        className={styles.download1}
+                                        href="/template/손글씨작성템플릿.pdf"
+                                        download
+                                    >
+                                        템플릿 다운로드 PDF
+                                    </a>
+                                    <a
+                                        className={styles.download2}
+                                        href="/template/손글씨작성템플릿.jpg"
+                                        download
+                                    >
+                                        템플릿 다운로드 JPG
+                                    </a>
+                                </div>
                             </div>
-                            <a
-                                className={styles.download}
-                                href="/손글씨작성템플릿.pdf"
-                                download
-                            >
-                                템플릿 다운로드
-                            </a>
                         </div>
                     )}
                     {page === 2 && (
@@ -224,6 +232,7 @@ const StandardKorean = () => {
                     )}
                 </div>
             </div>
+            <Tail />
         </div>
     );
 };
