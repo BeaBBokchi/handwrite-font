@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "components/Navbar";
+import Tail from "components/Tail";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/Home.module.scss";
@@ -67,6 +68,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <Tail />
         </div>
     );
 };

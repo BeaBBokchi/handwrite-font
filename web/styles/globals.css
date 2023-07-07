@@ -14,8 +14,6 @@ body {
   color: white;
   background: black;
   -ms-overflow-style: none;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 a {
