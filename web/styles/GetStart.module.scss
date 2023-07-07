@@ -2,28 +2,35 @@
 
 .container {
     height: 100vh;
-    background: $bg-blue;
+    background: linear-gradient(30deg, $primary--2, $primary--3);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 40px;
+    padding-top: 120px;
 }
 
 .head {
     font-family: 'Do Hyeon', sans-serif;
     font-size: 36px;
     color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px black;
+}
+
+.blockContainer {
+    display: flex;
+    gap: 48px;
 }
 
 .block {
-    width: 800px;
-    height: 300px;
-    background-color: white;
+    width: 350px;
+    height: 500px;
+    color: black;
+    background-color: $bg-white;
     border-radius: 16px;
     margin: 36px 0;
     display: flex;
-    outline: 1px solid rgba(255, 255, 255, 0.804);
+    box-shadow: 0 0 0 6px $bg-white;
     transition: all ease-in-out 0.1s;
     user-select: none;
     cursor: pointer;
@@ -54,15 +61,17 @@
         font-family: 'Poor Story', cursive;
         height: 50%;
         width: 100%;
+        display: flex;
         align-items: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        flex-direction: column;
+        align-items: start;
+        gap: 24px;
     }
 }
 .blockHead_color1 {
-    background-color: $bg-blue--4;
+    outline: 3px solid $primary--1;
 }
 .blockHead_color2 {
-    background-color: $bg-blue--2;
+    outline: 3px solid $primary--4;
+    
 }
