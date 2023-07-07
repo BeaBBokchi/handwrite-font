@@ -6,10 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 128px;
+  padding-top: 208px;
   gap: 128px;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .link {
@@ -51,9 +49,9 @@
   background-color: $bg-white;
   color: black;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 0 20rem;
+  gap: 16px;
   span {
     font-weight: 700;
   }

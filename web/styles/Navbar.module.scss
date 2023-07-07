@@ -3,13 +3,15 @@
 .container {
     background-color: $bg-white;
     color: black;
-    position: relative;
+    position: fixed;
+    width: 100%;
     overflow: hidden;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 25px;
+    border-bottom: 1px rgb(138 138 138 / 45%) solid;
     svg {
         color: $bg-blue;
         font-size: 24px;
