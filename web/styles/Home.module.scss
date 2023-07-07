@@ -8,6 +8,8 @@
   align-items: center;
   padding-top: 128px;
   gap: 128px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .link {
