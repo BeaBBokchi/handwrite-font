@@ -4,6 +4,7 @@ from datetime import datetime
 from unittest import result
 
 from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS
 from PIL import Image
 import torch
 from torchvision import transforms, utils
@@ -18,8 +19,9 @@ TRANSFORM = transforms.Compose(
 )
 
 
-app = Flask(__name__, static_url_path="/static")
-
+# app = Flask(__name__, static_url_path="/static")
+app = Flask(__name__)
+CORS(app)
 
 @app.route("/img", methods=["POST"])
 def get_style():
@@ -305,6 +307,17 @@ def weight_interpolation():
     print("이미지 생성 완료")
     return f"{s}.png"
 
+# TEST
+@app.route("/test", methods=["GET"])
+def test():
+
+    
+
+    print("이미지 생성 완료")
+    # res = Response(json.dumps(jsonAll, default=json_default, ensure_ascii=False), content_type="application/json; charset=utf-8");
+    # res.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+    return "짜잔"
+
 
 @app.route("/")
 def main():
@@ -320,20 +333,21 @@ if __name__ == "__main__":
 
     global root_path
     root_path = Path().absolute()
-    ckpt = root_path / "web" / "checkpoint" / "20_8.pt"
+    # ckpt = root_path / "web" / "checkpoint" / "20_8.pt"
 
     torch.backends.cudnn.benchmark = True
     torch.autograd.set_grad_enabled(False)
 
-    global g_ema, encoder, device
+    # global g_ema, encoder, device
 
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    g_ema = Generator(size, latent, n_mlp, channel_multiplier=1).to(device)
-    encoder = Encoder(size, latent, channel_multiplier=1).to(device)
+    # g_ema = Generator(size, latent, n_mlp, channel_multiplier=1).to(device)
+    # encoder = Encoder(size, latent, channel_multiplier=1).to(device)
 
-    checkpoint = torch.load(ckpt, map_location="cuda:0")
-    g_ema.load_state_dict(checkpoint["g_ema"])
-    encoder.load_state_dict(checkpoint["enc"])
+    # checkpoint = torch.load(ckpt, map_location="cuda:0")
+    # g_ema.load_state_dict(checkpoint["g_ema"])
+    # encoder.load_state_dict(checkpoint["enc"])
 
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
+    # app.run(debug=True)
