@@ -12,8 +12,8 @@ SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 LABEL_FILE = os.path.join(SCRIPT_PATH,'./dataset_builder/test_character.txt')
 src_dir = os.path.join(SCRIPT_PATH, './upload')
-dst_dir = os.path.join(SCRIPT_PATH, './dataset/crop_imgs')
-OUTPUT_DIR = os.path.join(SCRIPT_PATH, './dataset/crop_results')
+dst_dir = os.path.join(SCRIPT_PATH, './dataset/crop_results')
+OUTPUT_DIR = os.path.join(SCRIPT_PATH, './dataset/crop_imgs')
 
 image_out_dir = os.path.join(OUTPUT_DIR, 'images')
 if not os.path.exists(image_out_dir):
