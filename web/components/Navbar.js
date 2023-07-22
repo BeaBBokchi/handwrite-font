@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "styles/Navbar.module.scss";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "pages/api/firebase";
 
@@ -28,7 +28,11 @@ const Navbar = () => {
         setUserData(null);
     };
 
-    useEffect(() => {});
+    const handleClickUserIcon = () => {
+        if (userData) {
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -55,17 +59,19 @@ const Navbar = () => {
                 <Link href="#">
                     <a>고객지원</a>
                 </Link>
-                <Link href="#">
-                    {userData ? (
+                {userData ? (
+                    <Link href={"myPage/" + userData.uid}>
                         <a className={styles.iconDiv}>
                             <img src={userData.photoURL} />
                         </a>
-                    ) : (
+                    </Link>
+                ) : (
+                    <Link href="#">
                         <a className={styles.iconDiv}>
                             <FontAwesomeIcon icon={faCircleUser} />
                         </a>
-                    )}
-                </Link>
+                    </Link>
+                )}
             </div>
         </div>
     );
