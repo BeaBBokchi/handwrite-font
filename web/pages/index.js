@@ -5,8 +5,13 @@ import Tail from "components/Tail";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/Home.module.scss";
+import { useEffect } from "react";
+import { fbInstance } from "./api/firebase";
 
 const Home = () => {
+    useEffect(() => {
+        console.log(fbInstance);
+    });
     return (
         <div>
             <Head>
