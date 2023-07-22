@@ -37,9 +37,15 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className={styles.menu}>
-                <Link href="#">
-                    <a>마이페이지</a>
-                </Link>
+                {userData ? (
+                    <Link href="#">
+                        <a onClick={handleGoogleSignOut}>로그아웃</a>
+                    </Link>
+                ) : (
+                    <Link href="#">
+                        <a onClick={handleGoogleSignIn}>로그인</a>
+                    </Link>
+                )}
                 <Link href="#">
                     <a>소개</a>
                 </Link>
@@ -51,20 +57,12 @@ const Navbar = () => {
                 </Link>
                 <Link href="#">
                     {userData ? (
-                        <a
-                            className={styles.userDiv}
-                            onClick={handleGoogleSignOut}
-                        >
+                        <a className={styles.iconDiv}>
                             <img src={userData.photoURL} />
-                            로그아웃
                         </a>
                     ) : (
-                        <a
-                            className={styles.userDiv}
-                            onClick={handleGoogleSignIn}
-                        >
+                        <a className={styles.iconDiv}>
                             <FontAwesomeIcon icon={faCircleUser} />
-                            로그인
                         </a>
                     )}
                 </Link>
