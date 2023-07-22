@@ -37,3 +37,17 @@
     }
 
 }
+
+.userDiv {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 102px;
+    img {
+        width: 36px;
+        border-radius: 50%;
+    }
+    svg {
+        font-size: 36px;
+    }
+}

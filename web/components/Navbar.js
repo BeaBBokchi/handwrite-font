@@ -9,6 +9,7 @@ import { auth } from "pages/api/firebase";
 const Navbar = () => {
     const [userData, setUserData] = useState(null);
 
+    // Google SignIn
     const handleGoogleSignIn = () => {
         const provider = new GoogleAuthProvider(); // provider를 구글로 설정
         signInWithPopup(auth, provider) // popup을 이용한 signup
@@ -21,6 +22,7 @@ const Navbar = () => {
             });
     };
 
+    // Google SignOut
     const handleGoogleSignOut = () => {
         auth.signOut();
         setUserData(null);
@@ -36,19 +38,35 @@ const Navbar = () => {
             </div>
             <div className={styles.menu}>
                 <Link href="#">
+                    <a>마이페이지</a>
+                </Link>
+                <Link href="#">
                     <a>소개</a>
                 </Link>
                 <Link href="#">
                     <a>서비스</a>
                 </Link>
                 <Link href="#">
-                    <a onClick={handleGoogleSignOut}>고객지원</a>
+                    <a>고객지원</a>
                 </Link>
                 <Link href="#">
-                    <a onClick={handleGoogleSignIn}>
-                        <FontAwesomeIcon icon={faCircleUser} />
-                        {userData ? userData.displayName : null}
-                    </a>
+                    {userData ? (
+                        <a
+                            className={styles.userDiv}
+                            onClick={handleGoogleSignOut}
+                        >
+                            <img src={userData.photoURL} />
+                            로그아웃
+                        </a>
+                    ) : (
+                        <a
+                            className={styles.userDiv}
+                            onClick={handleGoogleSignIn}
+                        >
+                            <FontAwesomeIcon icon={faCircleUser} />
+                            로그인
+                        </a>
+                    )}
                 </Link>
             </div>
         </div>
