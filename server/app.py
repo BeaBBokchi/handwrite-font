@@ -10,13 +10,17 @@ CORS(app, resources={r'*': {'origins': '*'}})
 @app.route("/test", methods=["GET"])
 def test():
 
-    print("이미지 생성 완료")
+    testData = {
+        "id": "id_data",
+        "number": "number_data",
+        "time": "2023-07-27"
+    }
 
-    return "짜잔"
+    return testData
 
 
 @app.route("/")
-def helloWorld():
+def home():
     return "Hello, cross-origin-world!"
 
 if __name__ == "__main__":
