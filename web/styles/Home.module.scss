@@ -18,7 +18,8 @@
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  font-family: 'Do Hyeon';
+  font-family: 'Nanum Gothic';
+  font-weight: 800;
   &:hover,
   &:focus {
     background-color: rgba(255, 255, 255, 0.449);
@@ -31,7 +32,7 @@
   font-size: 40px;
   letter-spacing: -2px;
   color: rgb(255, 255, 255);
-  text-shadow: 1px 1px 2px black;
+  // text-shadow: 1px 1px 2px black;
 }
 
 .desc {
@@ -41,6 +42,7 @@
     font-size: 28px;
     letter-spacing: -1px;
   }
+
 }
 
 .imgDiv {
@@ -81,26 +83,26 @@
 
 .div1 {
   svg {
-    color: $primary--5;
+    color: $primary--3;
   }
 }
 .div2 {
   svg {
-    color: $primary--5;
+    color: $primary--3;
   }
 }
 .div3 {
   svg {
-    color: $primary--5;
+    color: $primary--3;
   }
 }
 .div4 {
   svg {
-    color: $primary--5;
+    color: $primary--3;
   }
 }
 .div5 {
   svg {
-    color: $primary--5;
+    color: $primary--3;
   }
 }
