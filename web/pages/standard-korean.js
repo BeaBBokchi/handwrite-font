@@ -13,6 +13,7 @@ import FilePreview from "components/FilePreview";
 import Tail from "components/Tail";
 import { auth, fireStorage, fireStore } from "./api/firebase";
 import axios from "axios";
+import { doc, setDoc, collection } from "firebase/firestore";
 
 const StandardKorean = () => {
     const router = useRouter();
@@ -88,13 +89,19 @@ const StandardKorean = () => {
                         "http://127.0.0.1:3030/upload", //send file to flask
                         formData
                     );
-
-                    console.log(formData); // 서버로부터 받은 데이터는 res에
                 } catch {
-                    console.log("Error");
+                    console.log("Server Error");
                 }
 
                 // DB에 내용 추가
+                const docRef = doc(
+                    collection(fireStore, "Uploads", uid, timestamp.toString())
+                );
+                setDoc(docRef, {
+                    uid,
+                    email,
+                    uploadURL: returnUrl,
+                });
             });
         });
         // TODO: DB
