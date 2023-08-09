@@ -1,10 +1,21 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
 # CORS(app, resources={r'*': {'origins': 'https://hwangtoemat.github.io'}})
+
+# Upload
+@app.route("/upload", methods=["POST"])
+def upload():
+    uid = request.form.get('uid')
+    time = request.form.get('time')
+    url = request.form.get('url')
+    print(uid)
+    print(time)
+    print(url)
+    return ""
 
 # TEST
 @app.route("/test", methods=["GET"])
