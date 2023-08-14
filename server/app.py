@@ -4,7 +4,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
-# CORS(app, resources={r'*': {'origins': 'https://hwangtoemat.github.io'}})
 
 # Upload
 @app.route("/upload", methods=["POST"])
@@ -12,9 +11,14 @@ def upload():
     uid = request.form.get('uid')
     time = request.form.get('time')
     url = request.form.get('url')
-    print(uid)
-    print(time)
-    print(url)
+    print("uid = " + uid)
+    print("time = " + time)
+    print("url = " + url)
+
+    # uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
+    # time = "1692004940838"
+    # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
+
     return ""
 
 # TEST
