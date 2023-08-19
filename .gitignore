@@ -37,4 +37,7 @@ yarn-error.log*
 next-env.d.ts
 
 # server crop data 
-/server/dataset
+/server/dataset/crop_imgs
+/server/dataset/crop_results
+/server/results/*
+/server/checkpoint/*

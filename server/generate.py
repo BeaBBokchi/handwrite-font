@@ -1,84 +1,127 @@
 import argparse
 from torchvision import transforms, utils
 import os
+import glob
 from PIL import Image
-from pathlib import Path
+import random
+
 
 import torch
 from torchvision import utils
 from model import Generator, Encoder
+from tqdm import tqdm
 from torch.utils import data
+from custom_dataset_loader_test import DatasetFromFolder
 
-TRANSFORM = transforms.Compose(
-    [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
-)
+SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
+fonts_dir= os.path.join(SCRIPT_PATH, 'dataset_builder/train_fonts')
+no_fonts = len(glob.glob(os.path.join(fonts_dir, '*.ttf')))
 
+TRANSFORM = transforms.Compose([transforms.ToTensor(),
+                          transforms.Normalize([0.5], [0.5])])
 
 def get_name(path):
     name, _ = os.path.splitext(os.path.basename(path))
     return name
 
-
 def generate(args, g_ema, encoder, device, mean_latent, test_path, size):
-    # 가중치 변화 없이
     with torch.no_grad():
-        # 평가 모드 키기
         g_ema.eval()
         encoder.eval()
-
+        ref_chars = []
+        n_chars = 1
+        n_ref_chars = []
+        cl_feats = []
         # Get a list of the src characters.
-        content = Path("img/content")
-        content_img = list(content.glob("**/*"))
+        # You need to edit
+        src_img_path = os.path.join(test_path, "crop_results")
+        src_imgs_path = glob.glob(os.path.join(src_img_path, '*.png'))
+        
+        fonts = sorted(glob.glob(os.path.join(fonts_dir, '*.ttf')))
 
-        style = Path("img/style")
-        # style_img = list(style.iterdir())
-        style_img = list(style.glob("**/*"))
+        # if the image names are numbers, sort by the value rather than asciibetically
+        # having sorted inputs means that the outputs are sorted in test mode
+        if all(get_name(path).isdigit() for path in src_imgs_path):
+            print("true")
+            src_imgs_path = sorted(src_imgs_path, key=lambda path: int(get_name(path)))
+        else:
+            print("false")
+            # src_imgs_path = sorted(src_imgs_path)
+            src_imgs_path = sorted(src_imgs_path, key=lambda path: str(get_name(path)))
 
-        for i, s in enumerate(style_img):
+        # Get a list of the ref characters.
+        # You need to edit
+        ref_img_path = os.path.join(test_path, "test_gothic")
+        
+        for src in src_imgs_path:
+            print(src)
 
-            # style_img = list(s.glob("**/*"))[0]
+        ref_imgs_path = sorted(glob.glob(os.path.join(ref_img_path, '*.png')))
+        n_chars = len(ref_imgs_path)
 
-            # style_tensor = torch.stack([TRANSFORM(Image.open(img).convert('RGB')) for img in style_img]).to(device)
-            # style_batch = torch.split(style_tensor, 1)
+        for i in range(n_chars):
+            ref_chars.append(ref_imgs_path[i][-5])
+                
+        for i in range(len(ref_chars)):
+            # preprocess ref images
+            ref_img = torch.stack([TRANSFORM(Image.open(ref_imgs_path[i]))]).to(device)
+            ref_batches = torch.split(ref_img, n_chars)
 
-            # style_code = []
+            cl_feats = []
+            for batch in ref_batches:
+                _cl = encoder(batch)
+                cl_feats.append(_cl[-1])
+            cl_feats = torch.cat(cl_feats).mean(dim=0, keepdim=True)
+                
+            # preprocess src images
+            src_img = TRANSFORM(Image.open(src_imgs_path[i])).to(device)
+            src_img = src_img.unsqueeze(0)
+            cnt_feats = encoder(src_img)
 
-            # for batch in style_batch:
-            #     _cl = encoder(batch)
-            #     style_code.append(_cl[-1])
-            # style_code = torch.cat(style_code).mean(dim=0, keepdim=True)
-            # style_feat = encoder(style_tensor.unsqueeze(0))
-
-            style_tensor = TRANSFORM(Image.open(s).convert("RGB")).to(device)
-            style_feat = encoder(style_tensor.unsqueeze(0))
-
-            result = []
-            for j, c in enumerate(content_img):
-                content_tensor = TRANSFORM(Image.open(c).convert("RGB")).to(device)
-                cnt_feats = encoder(content_tensor.unsqueeze(0))
-
-                sample, _ = g_ema(
-                    [cnt_feats[-1], style_feat[-1]],
-                    inject_index=4,
-                    input_is_latent=True,
-                )
-                result.append(sample)
-
-            result = torch.cat(
-                (result[0].squeeze(0), result[1].squeeze(0), result[0].squeeze(0)),
-                dim=-1,
-            )
-
+            # You need to edit
+            # sample, _ = g_ema([cnt_feats[-1]], inject_index=7, input_is_latent=True)
+            sample, _ = g_ema([cnt_feats[-1], cl_feats], inject_index=6, input_is_latent=True)
+            sample = torch.cat((src_img, ref_img, sample), dim =- 1)
             utils.save_image(
-                result, f"./img/style_{i}_{j}.png", normalize=True, range=(-1, 1),
+                sample,
+                # You need to edit
+                f"results/{ref_chars[i]}.png",
+                # f"results/MyHW3/only/{ref_chars[i]}.png",
+                nrow=5,
+                normalize=True,
+                range=(-1, 1),
             )
+            if i % 500 == 0:
+                print("processed images => ", i)
 
-    print("DONE")
-
+       # # preprocess ref images
+       #  for s, ref_style in enumerate(ref_chars):
+       #      ref_img = TRANSFORM(Image.open(ref_style).convert('RGB')).to(device)
+       #      style_feats = encoder(ref_img.unsqueeze(0))
+       #      # preprocess src images
+       #      for c, src_img in enumerate(src_imgs_path):
+       #          src_img = TRANSFORM(Image.open(src_img).convert('RGB')).to(device)
+       #          cnt_feats = encoder(src_img.unsqueeze(0))
+       #          sample, _ = g_ema([cnt_feats[-1], style_feats[-1]], inject_index=5, input_is_latent=True)
+       #          utils.save_image(
+       #              sample,
+       #              f"sample/results/generated_unseen/{s+1}_{c+1}.png",
+       #              normalize=True,
+       #              range=(-1, 1),
+       #          )
+       #          # utils.save_image(
+       #          #     tgt_img,
+       #          #     f"sample/results/target/{img_name[0]}.png",
+       #          #     normalize=True,
+       #          #     range=(-1, 1),
+       #          # )
+       #          if i % 500 == 0:
+       #              print("processed images => ", i)                
 
 if __name__ == "__main__":
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')
     print("Device chosen is ", device)
+    print()
 
     parser = argparse.ArgumentParser(description="Generate samples from the generator")
 
@@ -104,7 +147,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--ckpt",
         type=str,
-        default="checkpoint/140000.pt",
+        # You need to edit
+        default="checkpoint/korean_2350.pt",
         help="path to the model checkpoint",
     )
     parser.add_argument(
@@ -113,38 +157,29 @@ if __name__ == "__main__":
         default=1,
         help="channel multiplier of the generator. config-f = 2, else = 1",
     )
-    parser.add_argument(
-        "--test_path", type=str, default="dataset", help="path to the test dataset"
-    )
-
+    parser.add_argument('--test_path', type=str, default='dataset',
+         help="path to the test dataset")
+    
     args = parser.parse_args()
 
-    # 잠재 공간 설정
-    args.latent = 20
-    # mapping 네트워크 설정
+    args.latent = 64
     args.n_mlp = 8
 
-    # 생성자 레이어 설정
     g_ema = Generator(
         args.size, args.latent, args.n_mlp, channel_multiplier=args.channel_multiplier
     ).to(device)
-    # 인코더 설정
     encoder = Encoder(
         args.size, args.latent, channel_multiplier=args.channel_multiplier
     ).to(device)
-    # 가중치 불러오기
     checkpoint = torch.load(args.ckpt, map_location="cuda:0")
 
-    # 가중치 불러와서 생성자로 설정
     g_ema.load_state_dict(checkpoint["g_ema"])
     encoder.load_state_dict(checkpoint["enc"])
 
-    # truncation 기법인거 같은데 뭔지 모르겠네
     if args.truncation < 1:
         with torch.no_grad():
             mean_latent = g_ema.mean_latent(args.truncation_mean)
     else:
         mean_latent = None
 
-    # 이미지 생성
     generate(args, g_ema, encoder, device, mean_latent, args.test_path, args.size)

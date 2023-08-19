@@ -373,8 +373,8 @@ class ToRGB(nn.Module):
         if upsample:
             self.upsample = Upsample(blur_kernel)
 
-        self.conv = ModulatedConv2d(in_channel, 3, 1, style_dim, demodulate=False)
-        self.bias = nn.Parameter(torch.zeros(1, 3, 1, 1))
+        self.conv = ModulatedConv2d(in_channel, 1, 1, style_dim, demodulate=False)
+        self.bias = nn.Parameter(torch.zeros(1, 1, 1, 1))
 
     def forward(self, input, style, skip=None):
         out = self.conv(input, style)
@@ -613,12 +613,7 @@ class ConvLayer(nn.Sequential):
         )
 
         if activate:
-            if bias:
-                layers.append(FusedLeakyReLU(out_channel))
-
-            else:
-                layers.append(ScaledLeakyReLU(0.2))
-            # layers.append(FusedLeakyReLU(out_channel, bias=bias))
+            layers.append(FusedLeakyReLU(out_channel, bias=bias))
 
         super().__init__(*layers)
 
@@ -660,7 +655,7 @@ class Discriminator(nn.Module):
             1024: 16 * channel_multiplier,
         }
 
-        convs = [ConvLayer(3, channels[size], 1)]
+        convs = [ConvLayer(1, channels[size], 1)]
 
         log_size = int(math.log(size, 2))
 
@@ -705,11 +700,14 @@ class Discriminator(nn.Module):
 
         return out, features
 
-
 # Ammar adding encoder
 class Encoder(nn.Module):
     def __init__(
-        self, size, style_dim, channel_multiplier, blur_kernel=[1, 3, 3, 1],
+        self,
+        size,
+        style_dim,
+        channel_multiplier,
+        blur_kernel=[1, 3, 3, 1],
     ):
         super().__init__()
 
@@ -727,7 +725,7 @@ class Encoder(nn.Module):
             1024: 16 * channel_multiplier,
         }
 
-        self.from_rgb = ConvLayer(3, channels[size], 1)
+        self.from_rgb = ConvLayer(1, channels[size], 1)
         self.convs = nn.ModuleList()
 
         log_size = int(math.log(size, 2))
@@ -738,7 +736,9 @@ class Encoder(nn.Module):
         for i in range(self.log_size, 2, -1):
             out_channel = channels[2 ** (i - 1)]
 
-            self.convs.append(ResBlock(in_channel, out_channel, blur_kernel))
+            self.convs.append(
+                ResBlock(in_channel, out_channel, blur_kernel)
+            )
             in_channel = out_channel
 
         self.final_conv = ConvLayer(in_channel, style_dim, 3)
@@ -754,4 +754,3 @@ class Encoder(nn.Module):
         out = [out.squeeze(3).squeeze(2)]
 
         return out
-

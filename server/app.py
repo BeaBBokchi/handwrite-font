@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_cors import CORS
 
+import os
+
 app = Flask(__name__)
 CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
@@ -8,12 +10,21 @@ CORS(app, resources={r'*': {'origins': '*'}})
 # Upload
 @app.route("/upload", methods=["POST"])
 def upload():
-    uid = request.form.get('uid')
-    time = request.form.get('time')
-    url = request.form.get('url')
-    print("uid = " + uid)
-    print("time = " + time)
-    print("url = " + url)
+    
+    crop = os.path.join(os.getcwd(), "crop.py")
+    os.system('{} {}'.format('python', crop))
+    
+    generate = os.path.join(os.getcwd(), "generate.py")
+    os.system('{} {}'.format('python', generate))
+    
+    
+    
+    # uid = request.form.get('uid')
+    # time = request.form.get('time')
+    # url = request.form.get('url')
+    # print("uid = " + uid)
+    # print("time = " + time)
+    # print("url = " + url)
 
     # uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
     # time = "1692004940838"
@@ -25,11 +36,14 @@ def upload():
 @app.route("/test", methods=["GET"])
 def test():
 
-    testData = {
-        "id": "id_data",
-        "number": "number_data",
-        "time": "2023-07-27"
-    }
+    # testData = {
+    #     "id": "id_data",
+    #     "number": "number_data",
+    #     "time": "2023-07-27"
+    # }
+    
+    os.system("crop.py")
+    os.system("generate.py")
 
     return testData
 

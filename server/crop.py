@@ -103,22 +103,10 @@ parser.add_argument('--dst_dir', dest='dst_dir', default = dst_dir, required=Fal
 args = parser.parse_args()
 
 if __name__ == "__main__":
-#     if args.charset in ['CN', 'JP', 'KR', 'CN_T']:
-#         charset = locals().get("%s_CHARSET" % args.charset)
-#     else:
-#         charset = [c for c in open(args.charset).readline()[:-1].decode("utf-8")]
-#     if args.shuffle:
-#         np.random.shuffle(charset)
-    # rows = 12
-    # cols = 12
-    # header_ratio = 16.5/(16.5+42)
     scan_to_image(args.src_dir, args.dst_dir)
-#     crop_image_frequency(args.src_dir, args.dst_dir)
 
     font_count = 1
     folder_in=dst_dir
     images = load_images_from_folder(folder_in, image_out_dir)
-    # c = cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
+
     print(images[1].size)
-    # plt.imshow("images", images)
-    # display(images[1])
