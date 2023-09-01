@@ -8,7 +8,7 @@ import {
     setPersistence,
     signInWithPopup,
 } from "firebase/auth";
-import { auth } from "pages/api/auth/firebase";
+import { auth } from "pages/api/firebase";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {

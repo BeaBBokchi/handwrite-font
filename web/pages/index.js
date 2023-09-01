@@ -6,7 +6,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/Home.module.scss";
 import { useEffect, useState } from "react";
-import { auth, fbInstance } from "./api/auth/firebase";
+import { auth, fbInstance } from "./api/firebase";
 
 const Home = () => {
     const [userData, setUserData] = useState(null);
