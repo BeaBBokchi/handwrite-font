@@ -5,24 +5,24 @@ import styles from "styles/myPage.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { fbInstance, fireStore } from "pages/api/firebase";
+import { collection, getDoc, getDocs, query } from "firebase/firestore";
 
 const myPage = () => {
     const router = useRouter();
     const { uid } = router.query;
 
-    const [testData, setTestData] = useState();
-
-    const handleGetBtn = async () => {
-        let res = await axios.get("http://127.0.0.1:3030/test");
-        console.log(res.data);
+    const fetchData = async () => {
+        const querySnapshot = await getDocs(collection(fireStore, "Uploads"));
+        querySnapshot.forEach((doc) => {
+            // 가져온 모든 문서들을 확인
+            console.log(doc.id, " => ", doc.data());
+        });
     };
 
-    const handlePostBtn = async () => {
-        let res = await axios.get("http://127.0.0.1:3030/test");
-        console.log(res.data);
-    };
-
-    useEffect(() => {});
+    useEffect(() => {
+        fetchData();
+    });
 
     return (
         <div>
@@ -32,11 +32,7 @@ const myPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Navbar />
-            <div className={styles.container}>
-                {uid}
-                <button onClick={handleGetBtn}>get</button>
-                <button onClick={handlePostBtn}>post</button>
-            </div>
+            <div className={styles.container}></div>
             <Tail />
         </div>
     );

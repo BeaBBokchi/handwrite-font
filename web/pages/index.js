@@ -6,14 +6,10 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/Home.module.scss";
 import { useEffect, useState } from "react";
-import { auth, fbInstance } from "./api/firebase";
+import { auth } from "./api/firebase";
 
 const Home = () => {
     const [userData, setUserData] = useState(null);
-
-    const handleStartBtn = () => {
-        console.log(auth.currentUser);
-    };
 
     useEffect(() => {
         setUserData(auth.currentUser);

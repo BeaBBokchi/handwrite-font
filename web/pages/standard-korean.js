@@ -91,6 +91,22 @@ const StandardKorean = () => {
                     }
 
                     // DB에 내용 추가
+                    // const docRef = doc(
+                    //     collection(
+                    //         fireStore,
+                    //         "Uploads",
+                    //         uid,
+                    //         timestamp.toString()
+                    //     )
+                    // );
+                    // setDoc(docRef, {
+                    //     uid,
+                    //     email,
+                    //     uploadURL: returnUrl,
+                    // });
+                    setDoc(doc(fireStore, "Uploads", uid), {
+                        uid,
+                    });
                     const docRef = doc(
                         collection(
                             fireStore,
@@ -104,6 +120,14 @@ const StandardKorean = () => {
                         email,
                         uploadURL: returnUrl,
                     });
+                    // const docRef = doc(
+                    //     collection(fireStore, uid, timestamp.toString())
+                    // );
+                    // setDoc(docRef, {
+                    //     uid,
+                    //     email,
+                    //     uploadURL: returnUrl,
+                    // });
                 });
                 setIsUploading(false);
                 router.push("/");
