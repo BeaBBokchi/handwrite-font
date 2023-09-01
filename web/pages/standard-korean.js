@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import ReactCrop from "react-image-crop";
 import FilePreview from "components/FilePreview";
 import Tail from "components/Tail";
-import { auth, fireStorage, fireStore } from "./api/firebase";
+import { auth, fireStorage, fireStore } from "./api/auth/firebase";
 import axios from "axios";
 import { doc, setDoc, collection } from "firebase/firestore";
 

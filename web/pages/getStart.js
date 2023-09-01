@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Tail from "components/Tail";
 
 const GetStart = () => {
-    const routor = useRouter();
+    const rt = useRouter();
 
     return (
         <div>
@@ -23,7 +23,7 @@ const GetStart = () => {
                 <div className={styles.blockContainer}>
                     <div
                         className={styles.block}
-                        onClick={() => routor.push("/standard-korean")}
+                        onClick={() => rt.push("/standard-korean")}
                     >
                         <div
                             className={classNames(
