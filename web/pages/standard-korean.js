@@ -104,20 +104,17 @@ const StandardKorean = () => {
                     //     email,
                     //     uploadURL: returnUrl,
                     // });
-                    setDoc(doc(fireStore, "Uploads", uid), {
+                    setDoc(doc(fireStore, "Fonts", uid), {
                         uid,
                     });
                     const docRef = doc(
-                        collection(
-                            fireStore,
-                            "Uploads",
-                            uid,
-                            timestamp.toString()
-                        )
+                        collection(fireStore, "Fonts", uid, "Uploads"),
+                        timestamp.toString()
                     );
                     setDoc(docRef, {
                         uid,
                         email,
+                        time: timestamp.toString(),
                         uploadURL: returnUrl,
                     });
                     // const docRef = doc(
