@@ -37,9 +37,10 @@ const FontBlock = ({ props }) => {
     };
 
     const parsedDate = getYyyyMmDdMmSsToString(currentDate);
-    console.log(new Date(Number(time)));
+
+    const handleClick = () => {};
     return (
-        <div className={styles.block}>
+        <div className={styles.block} onClick={handleClick}>
             <span className={styles.time}>{parsedDate}</span>
         </div>
     );

@@ -51,13 +51,7 @@ const myPage = () => {
                     <div className={styles.blockContainer}>
                         {" "}
                         {fontList.map((element) => {
-                            return (
-                                <>
-                                    <FontBlock props={element} />
-                                    <FontBlock props={element} />
-                                    <FontBlock props={element} />
-                                </>
-                            );
+                            return <FontBlock props={element} />;
                         })}
                     </div>
                 ) : (
