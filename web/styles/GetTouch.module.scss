@@ -1,0 +1,80 @@
+@import "styles/variables.module";
+
+.container {
+    height: 800pt;
+    background: linear-gradient(30deg, $primary--2, $primary--3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 120px;
+}
+
+.head {
+    font-family: 'Nanum Gothic';
+    font-weight: 800;
+    font-size: 36px;
+    color: rgb(255, 255, 255);
+    // text-shadow: 1px 1px 2px black;
+    font-weight: 600;
+    margin-bottom: 50pt;
+}
+
+.blockContainer {
+    display: flex;
+    gap: 120px;
+}
+
+.block {
+    width: 350px;
+    height: 500px;
+    color: black;
+    background-color: $bg-white;
+    border-radius: 16px;
+    margin: 36px 0;
+    display: flex;
+    box-shadow: 0 0 0 6px $bg-white;
+    transition: all ease-in-out 0.1s;
+    user-select: none;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.blockHead {
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 60px;
+    .title {
+        font-size: 36px;
+        font-weight: 800;
+    }
+    .desc {
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'Nanum Gothic', sans-serif;
+    }
+    div {
+        font-family: 'Poor Story', cursive;
+        height: 50%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-items: start;
+        gap: 24px;
+    }
+}
+.blockHead_color1 {
+    outline: 3px solid $primary--1;
+}
+.blockHead_color2 {
+    outline: 3px solid $primary--4;
+    
+}
