@@ -1,7 +1,7 @@
 @import "styles/variables.module";
 
 .container {
-    height: 100vh;
+    height: 800pt;
     background: linear-gradient(30deg, $primary--2, $primary--3);
     display: flex;
     flex-direction: column;
@@ -17,11 +17,12 @@
     color: rgb(255, 255, 255);
     // text-shadow: 1px 1px 2px black;
     font-weight: 600;
+    margin-bottom: 50pt;
 }
 
 .blockContainer {
     display: flex;
-    gap: 48px;
+    gap: 120px;
 }
 
 .block {

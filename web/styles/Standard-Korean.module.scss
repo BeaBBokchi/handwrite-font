@@ -1,18 +1,25 @@
 @import "styles/variables.module";
 
 .container {
-  height: 100%;
+  height: 800pt;
   background: linear-gradient(30deg, $primary--2, $primary--3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 100pt;
+}
+
+.loaderDiv {
+  height: 500pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .block {
   background-color: rgb(242, 242, 242);
-  width: 800px;
-  height: 480px;
+  width: 800pt;
+  height: 400pt;
   border-radius: 24px;
   color: black;
   box-shadow: 0 0 0 6px $bg-white;
@@ -178,12 +185,12 @@
 .pageBtn_prev {
   background: $bg-white;
   color: $primary-dark--1;
-  margin-right: 24px;
+  margin-right: 48pt;
 }
 .pageBtn_next {
   background: $primary-dark--1;
   color: $bg-white;
-  margin-left: 24px;
+  margin-left: 48pt;
 }
 .pageBtn_op0 {
   opacity: 0;

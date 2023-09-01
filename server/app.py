@@ -19,12 +19,14 @@ def upload():
     
     
     
-    # uid = request.form.get('uid')
-    # time = request.form.get('time')
-    # url = request.form.get('url')
-    # print("uid = " + uid)
-    # print("time = " + time)
-    # print("url = " + url)
+    uid = request.form.get('uid')
+    time = request.form.get('time')
+    url = request.form.get('url')
+    # file = request.form.get('file')
+    print("uid = " + uid)
+    print("time = " + time)
+    print("url = " + url)
+    # print("file = " + file)
 
     # uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
     # time = "1692004940838"
