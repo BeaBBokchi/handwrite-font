@@ -20,7 +20,6 @@ const Navbar = () => {
             try {
                 const data = await signInWithPopup(auth, provider); // popup을 이용한 signup
                 setUserData(data.user); // user data 설정
-                console.log(data); // console로 들어온 데이터 표시
             } catch (err) {
                 console.log(err);
             }
@@ -33,22 +32,14 @@ const Navbar = () => {
         setUserData(null);
     };
 
-    const handleClickUserIcon = () => {
-        if (userData) {
-        }
-    };
-
     useEffect(() => {
-        auth.onAuthStateChanged(function (user) {
+        auth.onAuthStateChanged((user) => {
             if (user) {
                 setUserData(auth.currentUser);
             } else {
                 // No user is signed in.
             }
         });
-
-        // setUserID(auth.currentUser.uid);
-        // setUserPhoto(auth.currentUser.photoURL);
     });
 
     return (

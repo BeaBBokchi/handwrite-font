@@ -1,0 +1,19 @@
+@import "styles/variables.module";
+
+.block {
+    background-color: white;
+    color: black;
+    height: 200pt;
+    width: 200pt;
+    display: flex;
+    justify-content: center;
+    border-radius: 15%;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.time {
+    margin-top: 10pt;
+}

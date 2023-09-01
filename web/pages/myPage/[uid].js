@@ -4,26 +4,39 @@ import Tail from "components/Tail";
 import styles from "styles/myPage.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { fbInstance, fireStore } from "pages/api/firebase";
-import {
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    query,
-    where,
-} from "firebase/firestore";
+import { fireStore } from "pages/api/firebase";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { BounceLoader } from "react-spinners";
+import FontBlock from "components/FontBlock";
 
 const myPage = () => {
     const router = useRouter();
     const { uid } = router.query;
+    const [isLoading, setIsLoading] = useState(false);
+    const [fontList, setFontList] = useState([]);
 
-    const fetchData = async () => {};
+    const fetchData = async () => {
+        const q = query(
+            collection(fireStore, "Fonts", uid, "Uploads"),
+            orderBy("time")
+        );
+        let count = 0;
+        getDocs(q).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                let list = fontList;
+                list[count] = doc.data();
+                setFontList(list);
+                count += 1;
+            });
+            setIsLoading(false);
+            console.log(fontList);
+        });
+    };
 
     useEffect(() => {
+        setIsLoading(true);
         fetchData();
-    });
+    }, []);
 
     return (
         <div>
@@ -33,7 +46,26 @@ const myPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Navbar />
-            <div className={styles.container}></div>
+            <div className={styles.container}>
+                {!isLoading ? (
+                    <div className={styles.blockContainer}>
+                        {" "}
+                        {fontList.map((element) => {
+                            return (
+                                <>
+                                    <FontBlock props={element} />
+                                    <FontBlock props={element} />
+                                    <FontBlock props={element} />
+                                </>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className={styles.loaderDiv}>
+                        <BounceLoader size={100} color={"#FFFFFF"} />
+                    </div>
+                )}
+            </div>
             <Tail />
         </div>
     );
