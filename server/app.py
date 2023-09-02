@@ -34,6 +34,8 @@ def upload():
     # os.system('{} {}'.format('python', generate))
 
     # upload(uid, time)
+
+    print("test")
     
     return ""
 
@@ -63,7 +65,7 @@ def refine():
     # upload(uid, time)
 
     print ("yes")
-    
+
     return ""
 
 
