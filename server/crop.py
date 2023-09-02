@@ -10,14 +10,9 @@ import numpy as np
 
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-LABEL_FILE = os.path.join(SCRIPT_PATH,'./dataset_builder/test_character.txt')
+LABEL_FILE = os.path.join(SCRIPT_PATH,'./dataset_builder/test_character.txt') # TODO : 50자 list
 src_dir = os.path.join(SCRIPT_PATH, './upload')
 dst_dir = os.path.join(SCRIPT_PATH, './dataset/crop_results')
-OUTPUT_DIR = os.path.join(SCRIPT_PATH, './dataset/crop_imgs')
-
-image_out_dir = os.path.join(OUTPUT_DIR, 'images')
-if not os.path.exists(image_out_dir):
-    os.makedirs(image_out_dir)
 
 cols = 7  # tenplate cols
 rows = 4  # tenplate rows
@@ -79,20 +74,6 @@ def scan_to_image(src_dir, dst_dir):
                     cropped_image.save(name)
         print("Processed scan page " + str(page))
 
-def load_images_from_folder(folder, image_out_dir):
-    images = []
-    for i, filename in enumerate(os.listdir(folder)):
-#         img = imageio.imread(os.path.join(folder,filename))  # read as array
-        img = Image.open(os.path.join(folder,filename))
-
-#         print(filename)
-        if img is not None:
-            images.append(img)
-            file_string = '{:d}_{:04d}.png'.format(font_count,i)
-            file_path = os.path.join(image_out_dir, file_string)
-            img.save(file_path, 'PNG')
-    return images
-
 parser = argparse.ArgumentParser(description='Crop scanned images to character images')
 parser.add_argument('-f')
 
@@ -107,6 +88,3 @@ if __name__ == "__main__":
 
     font_count = 1
     folder_in=dst_dir
-    images = load_images_from_folder(folder_in, image_out_dir)
-
-    print(images[1].size)

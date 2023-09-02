@@ -41,3 +41,8 @@ next-env.d.ts
 /server/dataset/crop_results
 /server/results/*
 /server/checkpoint/*
+
+# server dataset
+/server/dataset/2350
+/server/dataset/test_gothic
+/server/dataset/UhBee_charming
