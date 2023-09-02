@@ -20,9 +20,9 @@ def upload():
     # print("time = " + time)
     # print("url = " + url)
 
-    uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
-    time = "1692004940838"
-    # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
+    # uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
+    # time = "1692004940838"
+    # # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
 
     # crop = os.path.join(os.getcwd(), "crop.py")
     # os.system('{} {}'.format('python', crop))

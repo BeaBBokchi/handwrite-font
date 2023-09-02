@@ -90,20 +90,6 @@ const StandardKorean = () => {
                         console.log("Server Error");
                     }
 
-                    // DB에 내용 추가
-                    // const docRef = doc(
-                    //     collection(
-                    //         fireStore,
-                    //         "Uploads",
-                    //         uid,
-                    //         timestamp.toString()
-                    //     )
-                    // );
-                    // setDoc(docRef, {
-                    //     uid,
-                    //     email,
-                    //     uploadURL: returnUrl,
-                    // });
                     setDoc(doc(fireStore, "Fonts", uid), {
                         uid,
                     });
@@ -116,6 +102,8 @@ const StandardKorean = () => {
                         email,
                         time: timestamp.toString(),
                         uploadURL: returnUrl,
+                        isDone: false,
+                        downloadURL: "",
                     });
                     // const docRef = doc(
                     //     collection(fireStore, uid, timestamp.toString())
