@@ -24,14 +24,14 @@ def upload():
     time = "1692004940838"
     # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
 
-    crop = os.path.join(os.getcwd(), "crop.py")
-    os.system('{} {}'.format('python', crop))
+    # crop = os.path.join(os.getcwd(), "crop.py")
+    # os.system('{} {}'.format('python', crop))
 
-    rm_crop = os.path.join(os.getcwd(), "dataset/crop_results")
-    os.system('{} {} {}'.format('rm', '-r', rm_crop))
+    # rm_crop = os.path.join(os.getcwd(), "dataset/crop_results")
+    # os.system('{} {} {}'.format('rm', '-r', rm_crop))
     
-    generate = os.path.join(os.getcwd(), "generate_family.py")
-    os.system('{} {}'.format('python', generate))
+    # generate = os.path.join(os.getcwd(), "generate_family.py")
+    # os.system('{} {}'.format('python', generate))
 
     # upload(uid, time)
     
@@ -57,11 +57,13 @@ def refine():
     # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
 
     
-    generate = os.path.join(os.getcwd(), "generate.py")
-    os.system('{} {}'.format('python', generate))
+    # generate = os.path.join(os.getcwd(), "generate.py")
+    # os.system('{} {}'.format('python', generate))
 
     # upload(uid, time)
 
+    print ("yes")
+    
     return ""
 
 

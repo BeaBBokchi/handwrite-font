@@ -34,7 +34,10 @@ def generate(args, g_ema, encoder, device, mean_latent, test_path, size):
         cl_feats = []
         # Get a list of the src characters.
         # You need to edit
-        src_img_path = os.path.join(test_path, "crop_results")
+        src_img_path = os.path.join(test_path, "2350")
+
+        print(src_img_path)
+        # src_img_path = os.path.join(test_path, "crop_results")
         src_imgs_path = glob.glob(os.path.join(src_img_path, '*.png'))
         
         fonts = sorted(glob.glob(os.path.join(fonts_dir, '*.ttf')))
@@ -81,7 +84,7 @@ def generate(args, g_ema, encoder, device, mean_latent, test_path, size):
             # You need to edit
             # sample, _ = g_ema([cnt_feats[-1]], inject_index=7, input_is_latent=True)
             sample, _ = g_ema([cnt_feats[-1], cl_feats], inject_index=6, input_is_latent=True)
-            sample = torch.cat((src_img, ref_img, sample), dim =- 1)
+            # sample = torch.cat((src_img, ref_img, sample), dim =- 1)
             utils.save_image(
                 sample,
                 # You need to edit

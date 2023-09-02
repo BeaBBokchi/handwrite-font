@@ -36,6 +36,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# server authentication
+/server/authentication
+
 # server crop data 
 /server/dataset/crop_imgs
 /server/dataset/crop_results
