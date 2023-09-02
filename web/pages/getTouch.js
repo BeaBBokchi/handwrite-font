@@ -4,11 +4,30 @@ import Navbar from "components/Navbar";
 import Head from "next/head";
 import styles from "styles/GetStart.module.scss";
 import classNames from "classnames";
-import { useRouter } from "next/router";
+import { withRouter } from "next/router";
 import Tail from "components/Tail";
+import axios from "axios";
 
-const GetStart = () => {
-    const rt = useRouter();
+const GetTouch = ({ router: { query } }) => {
+    const props = JSON.parse(query.data);
+    const handleGothic = () => {
+        // // 서버 콜
+        // const formData = new FormData();
+        // formData.append("uid", uid);
+        // formData.append("time", timestamp);
+        // formData.append("url", returnUrl);
+        // formData.append("file", uploadedFile);
+        // try {
+        //     const res = axios.post(
+        //         "http://127.0.0.1:3030/upload", //send file to flask
+        //         formData
+        //     );
+        // } catch {
+        //     console.log("Server Error");
+        // }
+    };
+
+    const handleMyeongjo = () => {};
 
     return (
         <div>
@@ -21,17 +40,14 @@ const GetStart = () => {
             <div className={styles.container}>
                 <span className={styles.head}>원하는 폰트 선택하기</span>
                 <div className={styles.blockContainer}>
-                    <div
-                        className={styles.block}
-                        onClick={() => rt.push("/standard-korean")}
-                    >
+                    <div className={styles.block} onClick={handleGothic}>
                         <div
                             className={classNames(
                                 styles.blockHead,
                                 styles.blockHead_color1
                             )}
                         >
-                            <span className={styles.title}>Standard</span>
+                            <span className={styles.title}>고딕</span>
                             <span className={styles.desc}>
                                 특별한 나만의 손글씨 폰트를 만들 수 있어요.
                             </span>
@@ -60,14 +76,14 @@ const GetStart = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.block}>
+                    <div className={styles.block} onClick={handleMyeongjo}>
                         <div
                             className={classNames(
                                 styles.blockHead,
                                 styles.blockHead_color2
                             )}
                         >
-                            <span className={styles.title}>Premium</span>
+                            <span className={styles.title}>명조</span>
                             <span className={styles.desc}>
                                 나의 손글씨를 다른 폰트와 혼합하여 만들 수
                                 있어요.
@@ -103,4 +119,4 @@ const GetStart = () => {
     );
 };
 
-export default GetStart;
+export default withRouter(GetTouch);

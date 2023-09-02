@@ -4,25 +4,39 @@ import Tail from "components/Tail";
 import styles from "styles/myPage.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { fireStore } from "pages/api/firebase";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { BounceLoader } from "react-spinners";
+import FontBlock from "components/FontBlock";
 
 const myPage = () => {
     const router = useRouter();
     const { uid } = router.query;
+    const [isLoading, setIsLoading] = useState(false);
+    const [fontList, setFontList] = useState([]);
 
-    const [testData, setTestData] = useState();
-
-    const handleGetBtn = async () => {
-        let res = await axios.get("http://127.0.0.1:3030/test");
-        console.log(res.data);
+    const fetchData = async () => {
+        const q = query(
+            collection(fireStore, "Fonts", uid, "Uploads"),
+            orderBy("time")
+        );
+        let count = 0;
+        getDocs(q).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                let list = fontList;
+                list[count] = doc.data();
+                setFontList(list);
+                count += 1;
+            });
+            setIsLoading(false);
+            console.log(fontList);
+        });
     };
 
-    const handlePostBtn = async () => {
-        let res = await axios.get("http://127.0.0.1:3030/test");
-        console.log(res.data);
-    };
-
-    useEffect(() => {});
+    useEffect(() => {
+        setIsLoading(true);
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -33,9 +47,18 @@ const myPage = () => {
             </Head>
             <Navbar />
             <div className={styles.container}>
-                {uid}
-                <button onClick={handleGetBtn}>get</button>
-                <button onClick={handlePostBtn}>post</button>
+                {!isLoading ? (
+                    <div className={styles.blockContainer}>
+                        {" "}
+                        {fontList.map((element) => {
+                            return <FontBlock props={element} />;
+                        })}
+                    </div>
+                ) : (
+                    <div className={styles.loaderDiv}>
+                        <BounceLoader size={100} color={"#FFFFFF"} />
+                    </div>
+                )}
             </div>
             <Tail />
         </div>

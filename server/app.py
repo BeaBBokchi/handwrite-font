@@ -11,7 +11,7 @@ CORS(app, resources={r'*': {'origins': '*'}})
 # Upload original style
 @app.route("/upload", methods=["POST"])
 def upload():
-    
+
     # uid = request.form.get('uid')
     # time = request.form.get('time')
     # url = request.form.get('url')

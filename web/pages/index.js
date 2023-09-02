@@ -5,12 +5,14 @@ import Tail from "components/Tail";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "styles/Home.module.scss";
-import { useEffect } from "react";
-import { fbInstance } from "./api/firebase";
+import { useEffect, useState } from "react";
+import { auth } from "./api/firebase";
 
 const Home = () => {
+    const [userData, setUserData] = useState(null);
+
     useEffect(() => {
-        console.log(fbInstance);
+        setUserData(auth.currentUser);
     });
     return (
         <div>
@@ -19,7 +21,7 @@ const Home = () => {
                 <meta name="Name" content="Content" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Navbar />
+            <Navbar userData={userData} setUserData={setUserData} />
             <div className={styles.container}>
                 <p className={styles.title}>나만의 손글씨 폰트 만들기</p>
                 <div className={styles.desc}>
