@@ -81,6 +81,8 @@ const StandardKorean = () => {
                     formData.append("time", timestamp);
                     formData.append("url", returnUrl);
                     formData.append("file", uploadedFile);
+                    console.log('formdata = ',formData)
+                    console.log('uploadedFile = ',uploadedFile)
                     try {
                         const res = axios.post(
                             "http://127.0.0.1:3030/upload", //send file to flask

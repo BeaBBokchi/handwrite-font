@@ -1,8 +1,10 @@
 from flask import Flask, request
 from flask_cors import CORS
+import urllib.request
+from PIL import Image
+import database
 
 import os
-from database import upload
 
 app = Flask(__name__)
 CORS(app)
@@ -12,30 +14,32 @@ CORS(app, resources={r'*': {'origins': '*'}})
 @app.route("/upload", methods=["POST"])
 def upload():
 
-    # uid = request.form.get('uid')
-    # time = request.form.get('time')
-    # url = request.form.get('url')
+    uid = request.form.get('uid')
+    time = request.form.get('time')
+    url = request.form.get('url')
+    file = request.form.get('file')
     # 이메일도 받기 (firebase 사용)
-    # print("uid = " + uid)
-    # print("time = " + time)
-    # print("url = " + url)
+    print("uid = " + uid)
+    print("time = " + time)
+    print("url = " + url)
+    # print("file = " + file)
 
     # uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
     # time = "1692004940838"
-    # # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
+    # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
 
-    # crop = os.path.join(os.getcwd(), "crop.py")
+    urllib.request.urlretrieve(url, f"upload/{uid}.png")
+
+    # crop = os.path.join(os.getcwd(), "crop.py") # TODO : arg input
     # os.system('{} {}'.format('python', crop))
 
-    # rm_crop = os.path.join(os.getcwd(), "dataset/crop_results")
+    # rm_crop = os.path.join(os.getcwd(), "dataset/crop_results") # TODO : arg input
     # os.system('{} {} {}'.format('rm', '-r', rm_crop))
     
     # generate = os.path.join(os.getcwd(), "generate_family.py")
     # os.system('{} {}'.format('python', generate))
 
-    # upload(uid, time)
-
-    print("test")
+    serverUpload(uid, time, url)
     
     return ""
 

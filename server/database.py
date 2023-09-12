@@ -1,12 +1,17 @@
-import pyrebase
-import json
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-def __init__(self):
-    with open('authentication/firebase_auth.json') as f:
-        config = json.load(f)
+# Use a service account
+cred = credentials.Certificate('authentication/key.json')
+firebase_admin.initialize_app(cred, {
+  'projectId': 'handwrite-font',
+})
 
-    firebase = pyrebase.initialize_app(config)
-    self.db = firebase.database()
+db = firestore.client()
 
-def upload(uid, time):
-    self.db.child('server-upload').push(uid)
+def serverUpload(uid, time, url) :
+    doc_ref = db.collection(u'Fonts').document(uid).collection(u'Uploads').document(time)
+    doc_ref.set({
+        u'isDone': True
+    }, merge=True)

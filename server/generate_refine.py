@@ -54,7 +54,7 @@ def generate(args, g_ema, encoder, device, mean_latent, test_path, size):
 
         # Get a list of the ref characters.
         # You need to edit
-        ref_img_path = os.path.join(test_path, "test_gothic")
+        ref_img_path = os.path.join(test_path, "DXGothic_20.ttf")
         
         for src in src_imgs_path:
             print(src)
