@@ -31,7 +31,7 @@ def upload():
     urllib.request.urlretrieve(url, f"upload/{uid}.png")
 
     # crop = os.path.join(os.getcwd(), "crop.py") # TODO : arg input
-    # os.system('{} {}'.format('python', crop))
+    # os.system('{} {}upload", '.format('python', crop))
 
     # rm_crop = os.path.join(os.getcwd(), "dataset/crop_results") # TODO : arg input
     # os.system('{} {} {}'.format('rm', '-r', rm_crop))
