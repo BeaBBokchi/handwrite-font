@@ -3,7 +3,7 @@ import styles from "styles/FilePreview.module.scss";
 
 const FilePreview = ({ fileData }) => {
     return (
-        <div className={styles.fileList}>
+        <div className={styles.fileDiv}>
             <div className={styles.fileContainer}>
                 {/* loop over the fileData */}
                 {fileData.fileList.map((f) => {
@@ -19,12 +19,12 @@ const FilePreview = ({ fileData }) => {
                                         height={200}
                                         src={URL.createObjectURL(f)}
                                     />
-                                    <div
+                                    {/* <div
                                         key={f.name}
                                         className={styles.fileName}
                                     >
                                         {f.name}
-                                    </div>
+                                    </div> */}
                                 </li>
                             </ol>
                         </>

@@ -132,7 +132,13 @@ const DropZone = ({ data, dispatch }) => {
             )}
 
             {/* Pass the selectect or dropped files as props */}
-            {fileSelected && <FilePreview fileData={data} />}
+            {fileSelected && (
+                <div className={styles.resultDiv}>
+                    <span>
+                        파일이 선택되었습니다! 다음 단계로 진행해 주세요.
+                    </span>
+                </div>
+            )}
 
             {/* {data.fileList.length > 0 && (
                 <button className={styles.uploadBtn} onClick={uploadFiles}>

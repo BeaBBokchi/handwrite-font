@@ -81,8 +81,8 @@ const StandardKorean = () => {
                     formData.append("time", timestamp);
                     formData.append("url", returnUrl);
                     formData.append("file", uploadedFile);
-                    console.log('formdata = ',formData)
-                    console.log('uploadedFile = ',uploadedFile)
+                    console.log("formdata = ", formData);
+                    console.log("uploadedFile = ", uploadedFile);
                     try {
                         const res = axios.post(
                             "http://127.0.0.1:3030/upload", //send file to flask
@@ -185,8 +185,6 @@ const StandardKorean = () => {
                                         템플릿 작성
                                     </span>
                                     <div className={styles.page2DescDiv}>
-                                        <img src="/template/손글씨작성템플릿.jpg" />
-
                                         <div className={styles.templateDiv}>
                                             <a
                                                 className={styles.download1}
@@ -203,6 +201,10 @@ const StandardKorean = () => {
                                                 템플릿 다운로드 JPG
                                             </a>
                                         </div>
+                                        <img
+                                            className="template_preview_img"
+                                            src="/assets/template_preview_1.png"
+                                        />
                                     </div>
                                 </div>
                             )}
