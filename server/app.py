@@ -2,9 +2,10 @@ from flask import Flask, request
 from flask_cors import CORS
 import urllib.request
 from PIL import Image
-import database
+# import database
 
 import os
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -59,7 +60,7 @@ def refine():
     # 이메일도 받기 (firebase 사용)
 
     uid = "nZ0dUCizxeRTjxPd4n0bQbPJp4y1"
-    time = "1692004940838"
+    # time = "1692004940838"
     # url = "https://firebasestorage.googleapis.com/v0/b/handwrite-font.appspot.com/o/web-upload%2FnZ0dUCizxeRTjxPd4n0bQbPJp4y11692004940838?alt=media&token=fdc6c3cb-8ae6-41a1-be74-b1080b36bea2"
 
     
@@ -67,6 +68,8 @@ def refine():
     # os.system('{} {}'.format('python', generate))
 
     # upload(uid, time)
+
+    time.sleep(1.5)
 
     print ("yes")
 

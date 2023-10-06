@@ -5,6 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;600;900&display=swap');
 
+@font-face {
+  font-family: "DXGothic";
+  src: url(../public/fonts/DX_20.ttf);
+}
+@font-face {
+  font-family: "DXMyeongjo";
+  src: url(../public/fonts/DXMyeongjo_30.ttf);
+}
 
 html,
 body {
