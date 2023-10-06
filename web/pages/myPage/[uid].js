@@ -15,6 +15,10 @@ const myPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [fontList, setFontList] = useState([]);
 
+    // test
+    // const [test, setTest] = useState(false);
+    let test = false;
+
     const fetchData = async () => {
         const q = query(
             collection(fireStore, "Fonts", uid, "Uploads"),
@@ -51,7 +55,11 @@ const myPage = () => {
                     <div className={styles.blockContainer}>
                         {" "}
                         {fontList.map((element) => {
-                            return <FontBlock props={element} />;
+                            const currentTest = test;
+                            test = true;
+                            return (
+                                <FontBlock props={element} test={currentTest} />
+                            );
                         })}
                     </div>
                 ) : (

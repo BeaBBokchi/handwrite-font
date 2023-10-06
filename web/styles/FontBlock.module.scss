@@ -7,11 +7,16 @@
     height: 200pt;
     width: 200pt;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     border-radius: 15%;
     transition: all 0.1s ease-in-out;
     &:hover {
         transform: scale(1.1);
+    }
+    img {
+        height: 65%;
     }
 }
 
@@ -22,16 +27,18 @@
 .downloadBtn, .touchBtn {
     font-size: 24px;
     position:absolute;
-    bottom: 18pt;
+    bottom: 10pt;
     padding: 6pt;
     border-radius: 10pt;
     cursor: pointer;
+    text-align: center;
 }
 .downloadBtn {
     left: 20pt;
     background-color: $primary--2;
 }
 .touchBtn {
-    right: 20pt;
+    // right: 20pt;
     background-color: $primary--3;
+    width: 60%;
 }

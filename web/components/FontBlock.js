@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "styles/FontBlock.module.scss";
 
-const FontBlock = ({ props }) => {
+const FontBlock = ({ props, test }) => {
     const [showBtn, setShowBtn] = useState(false);
     const { time } = props;
     const currentDate = new Date(Number(time));
@@ -69,11 +69,16 @@ const FontBlock = ({ props }) => {
             onMouseOut={handleHoverOut}
         >
             <span className={styles.time}>{parsedDate}</span>
-            {showBtn && (
+            {test ? (
+                <img src="/assets/preview_touch.png" />
+            ) : (
+                <img src="/assets/preview_origin.png" />
+            )}
+            {/* {showBtn && (
                 <div className={styles.downloadBtn} onClick={handleDownloadBtn}>
                     다운로드
                 </div>
-            )}
+            )} */}
             {showBtn && (
                 <div className={styles.touchBtn} onClick={handleTouchBtn}>
                     <Link
